@@ -1,0 +1,35 @@
+
+  .cardContainer {
+    height: 300;
+    width: 200;
+    border-radius: 10;
+    justify-content: "center";
+    align-items: "center";
+}
+
+.Butao {
+  background-color: brown;
+}
+
+.DottedBox {
+  margin: 20px;
+  font-size: 20px;
+  border-color: aqua;
+  background-color:rgb(237, 255, 208);
+}
+
+.DottedBox:hover {
+  margin: 20px;
+  font-size: 20px;
+  background-color:rgb(154, 207, 133);
+}
+
+.DottedBox_content {
+  font-size:25px;
+  background-color:rgb(179, 179, 248);
+  text-align: center;
+}
+
+
+
+
