@@ -151,7 +151,8 @@ export default class Items extends React.Component {
           />
         </FormGroup>
 
-        <FormGroup className="something" controlId="name" bsSize="large">
+
+        <FormGroup controlId="name" bsSize="large">
           <FormControl
             type="name"
             value={this.state.name}
