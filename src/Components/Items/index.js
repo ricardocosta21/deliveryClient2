@@ -8,7 +8,7 @@ import { Button, FormGroup, FormControl } from "react-bootstrap";
 
 import Contacts from "../Contacts";
 import Form from "../Form";
-import styles from "./Items.css"
+import styles from "./Items.css";
 
 export default class Items extends React.Component {
   constructor(props) {
@@ -78,12 +78,12 @@ export default class Items extends React.Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-         id: Number(this.state.id),
+          id: Number(this.state.id),
           name: this.state.name,
         }),
       }
-    ).then( () => {
-        this.handleGetAll();
+    ).then(() => {
+      this.handleGetAll();
     });
 
     e.preventDefault();
@@ -105,10 +105,10 @@ export default class Items extends React.Component {
           name: this.state.name,
         }),
       }
-    ).then( () => {
-        this.handleGetAll();
+    ).then(() => {
+      this.handleGetAll();
     });
-    
+
     e.preventDefault();
   }
 
@@ -124,8 +124,8 @@ export default class Items extends React.Component {
           "Content-Type": "application/json",
         },
       }
-    ).then( () => {
-        this.handleGetAll();
+    ).then(() => {
+      this.handleGetAll();
     });
 
     e.preventDefault();
@@ -142,24 +142,23 @@ export default class Items extends React.Component {
   render() {
     return (
       <div className="Items">
-                  
-          <FormGroup className="something" controlId="id" bsSize="large">
-            <input
-              autoFocus
-              type="id"
-              value={this.state.id}
-              onChange={this.handleIdChange}
-            />
-          </FormGroup>
+        <FormGroup className="something" controlId="id" bsSize="large">
+          <input
+            autoFocus
+            type="id"
+            value={this.state.id}
+            onChange={this.handleIdChange}
+          />
+        </FormGroup>
 
-          <FormGroup controlId="name" bsSize="large">
-            <FormControl
-              type="name"
-              value={this.state.name}
-              onChange={this.handleNameChange}
-            />
-          </FormGroup>
-
+        <FormGroup className="something" controlId="name" bsSize="large">
+          <FormControl
+            type="name"
+            value={this.state.name}
+            onChange={this.handleNameChange}
+          />
+        </FormGroup>
+        <div className="Buttons">
           <Button onClick={this.handleGetAll}>Get</Button>
           <Button onClick={this.handlePost}>Post</Button>
           <Button onClick={this.handlePut}>Put</Button>
@@ -169,17 +168,10 @@ export default class Items extends React.Component {
             onChange={this.handleNewNameChange}
           />
           <Button onClick={this.handleDelete}>Delete</Button>
-
-          <text>{this.state.id}</text>
-          <text>{this.state.name}</text>
+        </div>
         
-       
-          <Contacts contacts={this.state.contacts} />
-         
-          
+        <Contacts contacts={this.state.contacts} />
       </div>
-
-     
     );
   }
 }

@@ -1,17 +1,17 @@
 import React, {View} from "react";
 import styles from "./Contacts.css";
 
-import {Card, Button, ListGroup} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 
 const Contacts = ({ contacts }) => (
-  <div className="cardContainer">
+  <div>
     <center>
       <h1>Contact List</h1>
 
       {contacts.map((contact, index) => (
         <div key={index}>
           <Card className="cardContainer"> 
-            <Card.Body className="DottedBox">
+            <Card.Body>
               <Card.Title>{contact.id} - {contact.name}</Card.Title>
             </Card.Body>
           </Card>

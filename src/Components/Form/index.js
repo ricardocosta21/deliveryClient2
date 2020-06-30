@@ -1,21 +1,29 @@
 import React, { Fragment } from "react";
+import {Card, Button, FormControl} from "react-bootstrap";
+
 
 const Form = () => {
   return (
-    <Fragment>
-      <div className="form-group">
-        <label htmlFor="example1">Large input</label>
-        <input type="text" id="example1" className="form-control form-control-lg" />
-      </div>
-      <div className="form-group">
-        <label htmlFor="example2">Medium input</label>
-        <input type="text" id="example2" className="form-control form-control-md" />
-      </div>
-      <div className="form-group">
-        <label htmlFor="example3">Small input</label>
-        <input type="text" id="example3" className="form-control form-control-sm" />
-      </div>
-    </Fragment>
+   <Form>
+  <Form.Group controlId="formBasicEmail">
+    <Form.Label>Email address</Form.Label>
+    <Form.Control type="email" placeholder="Enter email" />
+    <Form.Text className="text-muted">
+      We'll never share your email with anyone else.
+    </Form.Text>
+  </Form.Group>
+
+  <Form.Group controlId="formBasicPassword">
+    <Form.Label>Password</Form.Label>
+    <Form.Control type="password" placeholder="Password" />
+  </Form.Group>
+  <Form.Group controlId="formBasicCheckbox">
+    <Form.Check type="checkbox" label="Check me out" />
+  </Form.Group>
+  <Button variant="primary" type="submit">
+    Submit
+  </Button>
+</Form>
 
   );
 }

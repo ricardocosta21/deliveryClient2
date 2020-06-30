@@ -1,35 +1,19 @@
-
-  .cardContainer {
-    height: 300;
-    width: 200;
-    border-radius: 10;
-    justify-content: "center";
-    align-items: "center";
+.cardContainer {
+  margin-top: 5px;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: rgb(228, 235, 217);
 }
 
-.Butao {
-  background-color: brown;
+.cardContainer:hover {
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border: 2px solid rgb(43, 83, 43);
+  background-color: rgb(178, 202, 168);
 }
-
-.DottedBox {
-  margin: 20px;
-  font-size: 20px;
-  border-color: aqua;
-  background-color:rgb(237, 255, 208);
-}
-
-.DottedBox:hover {
-  margin: 20px;
-  font-size: 20px;
-  background-color:rgb(154, 207, 133);
-}
-
-.DottedBox_content {
-  font-size:25px;
-  background-color:rgb(179, 179, 248);
-  text-align: center;
-}
-
-
-
-
