@@ -3,72 +3,63 @@
  *
  * List all the features
  */
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
-
+import ReactDOM from 'react-dom';
 import Contacts from "../Contacts";
 import Form from "../Form";
 import styles from "./Items.css";
+import { UserContext } from "../../providers/UserProvider";
+import { navigate } from "@reach/router";
+import { auth } from "../../firebase";
+import ProfilePage from "../../Containers/ProfilePage.jsx";
 
-export default class Items extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: "",
-      name: "",
-      newName: "",
-      contacts: [],
-    };
+function Items() {
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [newName, setNewName] = useState("");
+  const [contacts, setContacts] = useState([]);
 
-    this.handleChange = this.handleIdChange.bind(this);
-    this.handleChange = this.handleNameChange.bind(this);
-    this.handleChange = this.handleNewNameChange.bind(this);
+  // state = {
+  //   id: "",
+  //   name: "",
+  //   newName: "",
+  //   contacts: [],
+  // };
 
-    this.handlePost = this.handlePost.bind(this);
-    this.handleGetAll = this.handleGetAll.bind(this);
-    this.handlePut = this.handlePut.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  handleIdChange = (event) => {
-    this.setState({
-      id: event.target.value,
-    });
+  const handleIdChange = (e) => {
+    setId(e.target.value);
   };
 
-  handleNameChange = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
 
-  handleNewNameChange = (event) => {
-    this.setState({
-      newName: event.target.value,
-    });
+  const handleNewNameChange = (e) => {
+    setNewName(e.target.value);
   };
 
-  Item(id, name) {
-    this.id = id;
-    this.name = name;
-  }
+  // const Item = (id, name) => {
+  //   this.id = id;
+  //   this.name = name;
+  // };
 
   // Get Message
-  handleGetAll(e) {
+  const handleGetAll = (e) => {
     fetch(
       "http://ec2-18-222-140-190.us-east-2.compute.amazonaws.com:8888/api/categories"
     )
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ contacts: data });
+        setContacts({ data });
       })
       .catch(console.log);
     // added debug message
     //e.preventDefault();
-  }
+  };
 
   // Post Message
-  handlePost(e) {
+  const handlePost = (e) => {
     fetch(
       "http://ec2-18-222-140-190.us-east-2.compute.amazonaws.com:8888/api/categories",
       {
@@ -78,22 +69,22 @@ export default class Items extends React.Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: Number(this.state.id),
-          name: this.state.name,
+          id: Number(id),
+          name: name,
         }),
       }
     ).then(() => {
-      this.handleGetAll();
+      handleGetAll();
     });
 
     e.preventDefault();
-  }
+  };
 
   // Put Message
-  handlePut(e) {
+  const handlePut = (e) => {
     fetch(
       "http://ec2-18-222-140-190.us-east-2.compute.amazonaws.com:8888/api/categories?newName=" +
-        this.state.newName,
+        newName,
       {
         method: "PUT",
         headers: {
@@ -101,22 +92,22 @@ export default class Items extends React.Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: Number(this.state.id),
-          name: this.state.name,
+          id: Number(id),
+          name: name,
         }),
       }
     ).then(() => {
-      this.handleGetAll();
+      handleGetAll();
     });
 
     e.preventDefault();
-  }
+  };
 
   // Delete Message
-  handleDelete(e) {
+  const handleDelete = (e) => {
     fetch(
       "http://ec2-18-222-140-190.us-east-2.compute.amazonaws.com:8888/api/categories?id=" +
-        this.state.id,
+        id,
       {
         method: "DELETE",
         headers: {
@@ -125,54 +116,61 @@ export default class Items extends React.Component {
         },
       }
     ).then(() => {
-      this.handleGetAll();
+      handleGetAll();
     });
 
     e.preventDefault();
-  }
+  };
 
-  componentDidMount() {
-    this.handleGetAll();
-  }
+  useEffect(() => {
+    setTimeout(() => {
+      handleGetAll();
+    });
+  });
 
-  handleSubmit(event) {
-    event.preventDefault();
-  }
+  // const componentDidMount = () => {
+  //   this.handleGetAll();
+  // };
 
-  render() {
-    return (
-      <div className="Items">
-        <FormGroup className="something" controlId="id" bsSize="large">
-          <input
-            autoFocus
-            type="id"
-            value={this.state.id}
-            onChange={this.handleIdChange}
-          />
-        </FormGroup>
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  // };
 
+  //  const user = useContext(UserContext);
 
-        <FormGroup controlId="name" bsSize="large">
-          <FormControl
-            type="name"
-            value={this.state.name}
-            onChange={this.handleNameChange}
-          />
-        </FormGroup>
-        <div className="Buttons">
-          <Button onClick={this.handleGetAll}>Get</Button>
-          <Button onClick={this.handlePost}>Post</Button>
-          <Button onClick={this.handlePut}>Put</Button>
-          <input
-            type="text"
-            value={this.state.newName}
-            onChange={this.handleNewNameChange}
-          />
-          <Button onClick={this.handleDelete}>Delete</Button>
-        </div>
-        
-        <Contacts contacts={this.state.contacts} />
+  return (
+    <div className="Items">
+      <FormGroup className="something" controlId="id" bsSize="large">
+        <input autoFocus type="id" value={id} onChange={handleIdChange} />
+      </FormGroup>
+
+      <FormGroup controlId="name" bsSize="large">
+        <FormControl type="name" value={name} onChange={handleNameChange} />
+      </FormGroup>
+      <div className="Buttons">
+        <Button onClick={handleGetAll}>Get</Button>
+        <Button onClick={handlePost}>Post</Button>
+        <Button onClick={handlePut}>Put</Button>
+        <input type="text" value={newName} onChange={handleNewNameChange} />
+        <Button onClick={handleDelete}>Delete</Button>
       </div>
-    );
-  }
+
+
+      {/* <Contacts contacts={contacts} /> */}
+
+        {/* ReactDOM.render(
+    <Contacts contacts={contacts} />,
+    document.getElementById('root') */}
+
+      {/* <ProfilePage/> */}
+
+      {/* <div className="image-gallery" hidden={!selectedProduct}>
+          <ProductImage product={selectedProduct} />
+          <ProductThumbs selectProduct={selectProduct} catalogs={catalogs} />
+        </div> */}
+
+    </div>
+  );
 }
+
+export default Items;
