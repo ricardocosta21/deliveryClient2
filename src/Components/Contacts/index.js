@@ -5,13 +5,17 @@ import {Card} from "react-bootstrap";
 
 function Contacts({ contacts }) {
 
-  // const contacts1 = ['alligator', 'snake', 'lizard'];
-
   return (
-    <div className="image-scroller">
-      {contacts.map((contact, index) => (
-        <div key={index} >
-          <Card.Title>{contact.id}</Card.Title>
+    <div>
+      {contacts.map((contact) => (
+        <div key={contact.id} >
+        <center>
+          <Card className="cardContainer" > 
+           <Card.Body>
+            <Card.Title>{contact.id} - {contact.name}</Card.Title>
+           </Card.Body>
+          </Card>
+          </center>
         </div>
       ))}
     </div>

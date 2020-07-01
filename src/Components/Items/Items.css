@@ -19,6 +19,11 @@
       border: 2px solid rgb(90, 105, 90);
     }
     
+    .ItemsList {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
 
     .Buttons {
       padding-top: 60px;

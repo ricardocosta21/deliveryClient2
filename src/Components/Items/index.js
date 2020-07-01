@@ -5,27 +5,21 @@
  */
 import React, { useContext, useState, useEffect } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import Contacts from "../Contacts";
 import Form from "../Form";
 import styles from "./Items.css";
-import { UserContext } from "../../providers/UserProvider";
+import UserProvider from "../../providers/UserProvider";
 import { navigate } from "@reach/router";
 import { auth } from "../../firebase";
-import ProfilePage from "../../Containers/ProfilePage.jsx";
+import ProfilePage from "../../Components/ProfilePage";
+import { UserContext } from "../../providers/UserProvider";
 
 function Items() {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [newName, setNewName] = useState("");
   const [contacts, setContacts] = useState([]);
-
-  // state = {
-  //   id: "",
-  //   name: "",
-  //   newName: "",
-  //   contacts: [],
-  // };
 
   const handleIdChange = (e) => {
     setId(e.target.value);
@@ -39,11 +33,6 @@ function Items() {
     setNewName(e.target.value);
   };
 
-  // const Item = (id, name) => {
-  //   this.id = id;
-  //   this.name = name;
-  // };
-
   // Get Message
   const handleGetAll = (e) => {
     fetch(
@@ -51,7 +40,7 @@ function Items() {
     )
       .then((res) => res.json())
       .then((data) => {
-        setContacts({ data });
+        setContacts([...data]);
       })
       .catch(console.log);
     // added debug message
@@ -125,20 +114,14 @@ function Items() {
   useEffect(() => {
     setTimeout(() => {
       handleGetAll();
+      
     });
   });
 
-  // const componentDidMount = () => {
-  //   this.handleGetAll();
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  // };
-
-  //  const user = useContext(UserContext);
+ 
 
   return (
+    
     <div className="Items">
       <FormGroup className="something" controlId="id" bsSize="large">
         <input autoFocus type="id" value={id} onChange={handleIdChange} />
@@ -148,27 +131,27 @@ function Items() {
         <FormControl type="name" value={name} onChange={handleNameChange} />
       </FormGroup>
       <div className="Buttons">
+
+    {/* <div>{'Logged in as ' + email}</div> */}
+    
+
         <Button onClick={handleGetAll}>Get</Button>
         <Button onClick={handlePost}>Post</Button>
         <Button onClick={handlePut}>Put</Button>
         <input type="text" value={newName} onChange={handleNewNameChange} />
         <Button onClick={handleDelete}>Delete</Button>
+
       </div>
 
+      <div className="ItemsList">
+        <Contacts contacts={contacts} />
+        {/* <div>{email ? 'Logged in as ' + displayName : 'Anonymous'}</div> */}
+      </div>
 
-      {/* <Contacts contacts={contacts} /> */}
-
-        {/* ReactDOM.render(
-    <Contacts contacts={contacts} />,
-    document.getElementById('root') */}
-
-      {/* <ProfilePage/> */}
-
-      {/* <div className="image-gallery" hidden={!selectedProduct}>
-          <ProductImage product={selectedProduct} />
-          <ProductThumbs selectProduct={selectProduct} catalogs={catalogs} />
-        </div> */}
-
+      
+        <ProfilePage/>
+      
+     
     </div>
   );
 }
