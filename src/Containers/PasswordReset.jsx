@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { auth } from "../firebase";
 import { UserContext } from "../providers/UserProvider";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");

@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Link } from "@reach/router";
+import React, {useState } from "react";
+import { Link } from "react-router-dom";
 import { auth, signInWithGoogle, generateUserDocument } from "../firebase";
 
 const SignUp = () => {
@@ -105,9 +105,9 @@ const SignUp = () => {
         </button>
         <p className="text-center my-3">
           Already have an account?{" "}
-          <Link to="/" className="text-blue-500 hover:text-blue-600">
+          <Link to="signin" className="text-blue-500 hover:text-blue-600">
             Sign in here
-          </Link>{" "}
+          </Link>
         </p>
       </div>
     </div>

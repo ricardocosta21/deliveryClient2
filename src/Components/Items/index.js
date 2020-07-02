@@ -3,17 +3,11 @@
  *
  * List all the features
  */
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
-import ReactDOM from "react-dom";
 import Contacts from "../Contacts";
-import Form from "../Form";
 import styles from "./Items.css";
-import UserProvider from "../../providers/UserProvider";
-import { navigate } from "@reach/router";
-import { auth } from "../../firebase";
 import ProfilePage from "../../Components/ProfilePage";
-import { UserContext } from "../../providers/UserProvider";
 
 function Items() {
   const [id, setId] = useState("");
@@ -112,46 +106,48 @@ function Items() {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      handleGetAll();
-      
-    });
+    handleGetAll();
+
   });
 
- 
-
   return (
-    
     <div className="Items">
-      <FormGroup className="something" controlId="id" bsSize="large">
-        <input autoFocus type="id" value={id} onChange={handleIdChange} />
-      </FormGroup>
 
-      <FormGroup controlId="name" bsSize="large">
-        <FormControl type="name" value={name} onChange={handleNameChange} />
-      </FormGroup>
+          <form className="">
+          <label htmlFor="id" className="block">
+            Email:
+          </label>
+          <input type="id" className="my-1 p-1 w-full" name="id" value={id} placeholder="123" id="id"
+           onChange={handleIdChange} 
+          />
+          <label htmlFor="name" className="block">
+            Password:
+          </label>
+          <input
+            type="name"
+            className="mt-1 mb-3 p-1 w-full"
+            name="name"
+            value={name}
+            placeholder="Category Name"
+            id="name"
+            onChange={handleNameChange} 
+          form/>
+          </form>
+
       <div className="Buttons">
-
-    {/* <div>{'Logged in as ' + email}</div> */}
-    
-
         <Button onClick={handleGetAll}>Get</Button>
         <Button onClick={handlePost}>Post</Button>
         <Button onClick={handlePut}>Put</Button>
         <input type="text" value={newName} onChange={handleNewNameChange} />
         <Button onClick={handleDelete}>Delete</Button>
-
       </div>
 
       <div className="ItemsList">
         <Contacts contacts={contacts} />
-        {/* <div>{email ? 'Logged in as ' + displayName : 'Anonymous'}</div> */}
       </div>
 
-      
-        <ProfilePage/>
-      
-     
+      <ProfilePage/>
+
     </div>
   );
 }
