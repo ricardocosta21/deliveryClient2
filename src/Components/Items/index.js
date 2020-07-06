@@ -106,9 +106,8 @@ function Items() {
   };
 
   useEffect(() => {
-    //handleGetAll();
-
-  });
+    handleGetAll();
+  }, []);
 
   return (
     <div className="Items">
@@ -133,7 +132,7 @@ function Items() {
           </form>
 
       <div className="Buttons">
-        <Button onClick={handleGetAll}>Get</Button>
+        {/* <Button onClick={handleGetAll}>Get</Button> */}
         <Button onClick={handlePost}>Post</Button>
         <Button onClick={handlePut}>Put</Button>
         <input type="text" value={newName} onChange={handleNewNameChange} />
