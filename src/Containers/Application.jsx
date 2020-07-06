@@ -5,6 +5,7 @@ import SignUp from "./SignUp";
 import { UserContext } from "../providers/UserProvider";
 import PasswordReset from "./PasswordReset";
 import ProfilePage from "../Components/ProfilePage";
+import PageNotFound from "../Components/PageNotFound";
 import Items from "../Components/Items";
 
 function Application() {
@@ -21,6 +22,7 @@ function Application() {
           <Route path="/passwordreset" component={withRouter(PasswordReset)} />
           <Route path="/signup" component={withRouter(SignUp)} />
           <Route path="/profilepage" component={withRouter(ProfilePage)} />
+          <Route path="" component={PageNotFound} />
         </Switch>
       </div>
     </Router>
