@@ -115,13 +115,11 @@ function Items() {
 
           <form className="">
           <label htmlFor="id" className="block">
-            Email:
           </label>
-          <input type="id" className="my-1 p-1 w-full" name="id" value={id} placeholder="123" id="id"
-           onChange={handleIdChange} 
+          <input type="id" className="my-1 p-1 w-full" name="id" 
+          value={id} placeholder="ID" id="id" onChange={handleIdChange} 
           />
           <label htmlFor="name" className="block">
-            Password:
           </label>
           <input
             type="name"
@@ -135,7 +133,7 @@ function Items() {
           </form>
 
       <div className="Buttons">
-        <Button onClick={handleGetAll}>Get</Button>
+        {/* <Button onClick={handleGetAll}>Get</Button> */}
         <Button onClick={handlePost}>Post</Button>
         <Button onClick={handlePut}>Put</Button>
         <input type="text" value={newName} onChange={handleNewNameChange} />

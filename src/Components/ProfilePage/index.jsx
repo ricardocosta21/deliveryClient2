@@ -23,7 +23,7 @@ function ProfilePage () {
           <h3 className = "italic">{email}</h3>
         </div>
       </div>
-      <button className = "w-full py-3 bg-red-600 mt-4 text-white" onClick = {() => {auth.signOut()}}>Sign out</button>
+      <button className = "w-full py-2 bg-red-600 mt-3 text-white" onClick = {() => {auth.signOut()}}>Sign out</button>
     </div>
   ) 
 };
